@@ -15,9 +15,10 @@ namespace ConcessionStandProject
             {
                 Products.Add(product);
             }
+            OrderID = orderID;
         }
 
         public List<Product> Products { get; set; }
-
+        public Guid OrderID { get; }
     }
 }

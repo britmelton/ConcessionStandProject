@@ -45,7 +45,6 @@ namespace ConcessionStandProjectTests
         [InlineData("pretzel", 2.75, 567891)]
         [InlineData("nachos", 3.75, 456789)]
         [InlineData("coca-cola", 2.95, 345678)]
-
         public void WhenorderIsSubmitted_ThenReceiptContainsAllProducts(string name, double price, int sku)
         {
             Order order = new Order();
@@ -56,11 +55,20 @@ namespace ConcessionStandProjectTests
             Receipt receipt = order.Submit();
 
             receipt.Products.Should().BeEquivalentTo(order.Products);
-            //Receipt class does not contain definition for Products, need to add property
+            
         }
 
+        [Fact]
+        public void WhenOrderIsSubmitted_ThenReceiptContainsOrderID()
+        {
+            Order order = new Order();
+            Product product = new Product("chips", 2.25, 234567);
+            order.Add(product);
 
+            Receipt receipt = order.Submit();
 
+            receipt.OrderID.Should().Be(order.OrderID);
+        }
 
 
 
