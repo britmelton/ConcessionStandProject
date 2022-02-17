@@ -82,7 +82,19 @@ namespace ConcessionStandProjectTests
             order.Subtotal.Should().Be(expectedSubtotal);
         }
 
+        [Fact]
+        public void WhenAddingMultipleProducts_ThenSubtotalIsUpdated()
+        {
+            var product = new Product("hotdog", 1.05, 123456);
+            var product2 = new Product("nachos", 3.75, 456789);
+            var order = new Order();
+            order.Add(product);
+            order.Add(product2);
 
+            var expectedSubtotal = product.Price + product2.Price;
+
+            order.Subtotal.Should().Be(expectedSubtotal);
+        }
 
 
     }
