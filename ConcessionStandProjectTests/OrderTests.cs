@@ -1,4 +1,5 @@
 using ConcessionStandProject;
+using FluentAssertions;
 using System;
 using Xunit;
 
@@ -24,7 +25,46 @@ namespace ConcessionStandProjectTests
             var order = new Order();
 
             Assert.NotEqual(order.OrderID, Guid.Empty);
-
         }
+
+        [Fact]
+        public void WhenOrderIsSubmitted_ThenReceiptIsCreated()
+        {
+            var order = new Order();
+            var product = new Product("nachos", 3.75, 456789);
+            order.Add(product);
+            order.Add(product);
+
+            Receipt receipt = order.Submit();
+
+            Assert.NotNull(receipt);
+        }
+
+        [Theory]
+        [InlineData("hotdog", 1.05, 123456)]
+        [InlineData("pretzel", 2.75, 567891)]
+        [InlineData("nachos", 3.75, 456789)]
+        [InlineData("coca-cola", 2.95, 345678)]
+
+        public void WhenorderIsSubmitted_ThenReceiptContainsAllProducts(string name, double price, int sku)
+        {
+            Order order = new Order();
+            Product product = new Product(name, price, sku);
+
+            order.Add(product);
+
+            Receipt receipt = order.Submit();
+
+            receipt.Products.Should().BeEquivalentTo(order.Products);
+            //Receipt class does not contain definition for Products, need to add property
+        }
+
+
+
+
+
+
+
+
     }
 }

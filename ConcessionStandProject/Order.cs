@@ -20,6 +20,13 @@ namespace ConcessionStandProject
             Products.Add(product);
         }
 
+        public Receipt Submit()
+        {
+            var receipt = new Receipt(Products, OrderID);
+
+            return receipt;
+        }
+
 
 
 
