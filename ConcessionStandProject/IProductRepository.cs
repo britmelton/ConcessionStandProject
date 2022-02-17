@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConcessionStandProject
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
+        IEnumerable<Product> GetAllProducts();
     }
 }

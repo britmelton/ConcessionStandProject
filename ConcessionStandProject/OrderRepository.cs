@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConcessionStandProject
 {
-    internal class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
+
     }
 }

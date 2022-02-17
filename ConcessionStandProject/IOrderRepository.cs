@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConcessionStandProject
 {
-    internal interface IOrderRepository
+    public interface IOrderRepository
     {
+
     }
 }
