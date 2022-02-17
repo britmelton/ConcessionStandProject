@@ -16,5 +16,15 @@ namespace ConcessionStandProjectTests
        
             Assert.Equal(order.Products[0], product);
         }
+
+
+        [Fact]
+        public void WhenCreatingAnOrderID_ThenOrderIDIsSet()
+        {
+            var order = new Order();
+
+            Assert.NotEqual(order.OrderID, Guid.Empty);
+
+        }
     }
 }
