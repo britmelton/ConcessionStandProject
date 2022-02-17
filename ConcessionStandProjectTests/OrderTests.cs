@@ -70,6 +70,17 @@ namespace ConcessionStandProjectTests
             receipt.OrderID.Should().Be(order.OrderID);
         }
 
+        [Fact]
+        public void WhenAddingAProduct_ThenSubtotalIsUpdated()
+        {
+            var product = new Product("hotdog", 1.05, 123456);
+            var order = new Order();
+            order.Add(product);
+
+            var expectedSubtotal = product.Price;
+
+            order.Subtotal.Should().Be(expectedSubtotal);
+        }
 
 
 

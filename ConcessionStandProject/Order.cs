@@ -13,11 +13,13 @@ namespace ConcessionStandProject
 
         public List<Product> Products { get; set; }
         public Guid OrderID { get; }
+        public double Subtotal { get; set; }
 
 
         public void Add(Product product)
         {
             Products.Add(product);
+            CalculateSubtotal();
         }
 
         public Receipt Submit()
@@ -27,7 +29,16 @@ namespace ConcessionStandProject
             return receipt;
         }
 
+        public void CalculateSubtotal()
+        {
+            double subtotal = 0;
+            foreach (Product product in Products)
+            {
+                subtotal += product.Price;
+            }
 
+            Subtotal = subtotal;
+        }
 
 
     }
