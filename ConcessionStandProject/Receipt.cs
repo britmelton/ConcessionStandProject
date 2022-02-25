@@ -8,17 +8,17 @@ namespace ConcessionStandProject
 {
     public class Receipt
     {
-        public Receipt(List<Product> products, Guid orderID)
+        public Receipt(List<Product> products, Guid orderId)
         {
             Products = new List<Product>();
             foreach (Product product in products)
             {
                 Products.Add(product);
             }
-            OrderID = orderID;
+            OrderId = orderId;
         }
 
         public List<Product> Products { get; set; }
-        public Guid OrderID { get; }
+        public Guid OrderId { get; }
     }
 }

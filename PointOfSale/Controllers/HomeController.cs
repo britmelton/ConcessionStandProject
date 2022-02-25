@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ConcessionStandProject;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PointOfSale.Models;
 using System;

@@ -1,0 +1,22 @@
+﻿ 
+
+@*@using ConcessionStandProject
+@model Order;
+@{
+    ViewData["Title"] = "Point Of Sale";
+}
+
+<div class="text-center">
+    <h1>Order History</h1>
+  
+
+</div>
+  @foreach (var item in _orders)
+{
+    <p>
+        @Model.OrderId
+        @Model.Products
+        @Model.Total
+    </p>
+}
+*@

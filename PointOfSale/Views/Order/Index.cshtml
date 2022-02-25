@@ -1,0 +1,49 @@
+﻿
+<body class=order-page>
+@using ConcessionStandProject
+@model Order;
+@{
+    ViewData["Title"] = "Point Of Sale";
+}
+
+<div class="text-center">
+    
+    <h1 class="display-4">Concession Stand</h1>
+    <p class=select>Select the items you wish to order</p>
+
+    @using (Html.BeginForm("AddItem", "Order", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.OrderId)
+        @foreach(var product in ViewBag.Products)
+        {
+            
+            <button 
+                type="submit"
+                name="sku"
+                value="@product.Sku" 
+                class="button" 
+                >
+               <img src= "@Url.Content(product.Image)" alt="@product.Name" height="150" width="150" class="imagebutton">
+            </button>
+            
+        }
+        
+    }
+  
+    <label>Subtotal =$</label>@string.Format("{0:#.00}", Model.Subtotal)
+    
+
+</div>
+@await Html.PartialAsync("OrderSummary", Model)
+
+@using (Html.BeginForm("generate-receipt", "Order", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.OrderId)
+<button
+type="submit"
+class="submit"
+>Submit Order
+</button>
+}
+
+</body>

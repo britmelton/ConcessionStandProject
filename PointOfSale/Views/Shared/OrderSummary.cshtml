@@ -1,0 +1,14 @@
+﻿
+
+@using ConcessionStandProject
+@model Order
+
+<h4>Order: @Model.OrderId</h4>
+<ol class="summary">
+    @foreach (var li in Model.Products)
+    {
+    <li>
+        <span>@li.Name &#36;@string.Format("{0:#.00}",li.Price)</span>
+    </li>
+    }
+</ol>

@@ -8,13 +8,14 @@ namespace ConcessionStandProject
         public Order()
         {
             Products = new List<Product>(); //creates a new list of Products when a new Order is created.
-            OrderID = Guid.NewGuid(); //creates new guid ID for each new order. 
+            OrderId = Guid.NewGuid(); //creates new guid ID for each new order. 
         }
 
         public List<Product> Products { get; set; }
-        public Guid OrderID { get; }
+        public Guid OrderId { get; set; }
         public double Subtotal { get; set; }
-
+        public Receipt Receipt { get; private set; }
+        public double Total { get; set; }
 
         public void Add(Product product)
         {
@@ -22,11 +23,11 @@ namespace ConcessionStandProject
             CalculateSubtotal();
         }
 
-        public Receipt Submit()
+        public void Submit()
         {
-            var receipt = new Receipt(Products, OrderID);
-
-            return receipt;
+            Receipt = new Receipt(Products, OrderId);
+            var total = Subtotal;
+            Total = total;
         }
 
         public void CalculateSubtotal()
