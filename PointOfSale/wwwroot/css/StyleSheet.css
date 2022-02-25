@@ -25,7 +25,7 @@ body {
     }
 
     body.order-page{
-        background-color:red;
+        background-color:lightgoldenrodyellow;
     }
 
     .select{
@@ -45,19 +45,19 @@ body {
 
 .submit{
     background-color:blue;
-    color:red;
+    color:lightblue;
     font-size:1em;
 }
 
 #invoice-POS {
-    box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 2in -0.50in rgba(0, 0, 0, 0.5);
     padding: 2mm;
     margin: 0 auto;
     width: 50mm;
     background: #FFF;
 }
 .orderid{
-    font-size:1em;
+    font-size:.5em;
 }
 
  h1{
