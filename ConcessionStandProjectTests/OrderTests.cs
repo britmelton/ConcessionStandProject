@@ -12,7 +12,7 @@ namespace ConcessionStandProjectTests
         public void WhenAddingProductToOrder_ThenProductExistsInOrder()
         {           
             var order = new Order();
-            var product = new Product("cookie", 2.99, 678912, "~/css/cookie.jpg");
+            var product = new Product("cookie", 2.99, 678912, "~/css/cookie.png");
 
             order.Add(product);
        
@@ -32,7 +32,7 @@ namespace ConcessionStandProjectTests
         public void WhenOrderIsSubmitted_ThenReceiptIsCreated()
         {
             var order = new Order();
-            var product = new Product("nachos", 3.75, 456789, "~/css/nachos.jpg");
+            var product = new Product("nachos", 3.75, 456789, "~/css/nachos.png");
             order.Add(product);
 
             order.Submit();
@@ -41,10 +41,10 @@ namespace ConcessionStandProjectTests
         }
 
         [Theory]
-        [InlineData("hotdog", 1.05, 123456, "~/css/hotdog.jpg")]
-        [InlineData("pretzel", 2.75, 567891, "~/css/pretzel.jpg")]
-        [InlineData("nachos", 3.75, 456789, "~/css/nachos.jpg")]
-        [InlineData("coca-cola", 2.95, 345678, "~/css/cocacola.jpg")]
+        [InlineData("hotdog", 1.05, 123456, "~/css/hotdog.png")]
+        [InlineData("pretzel", 2.75, 567891, "~/css/pretzel.png")]
+        [InlineData("nachos", 3.75, 456789, "~/css/nachos.png")]
+        [InlineData("coca-cola", 2.95, 345678, "~/css/cocacola.png")]
         public void WhenorderIsSubmitted_ThenReceiptContainsAllProducts(string name, double price, int sku, string image)
         {
             Order order = new Order();
@@ -62,7 +62,7 @@ namespace ConcessionStandProjectTests
         public void WhenOrderIsSubmitted_ThenReceiptContainsOrderID()
         {
             Order order = new Order();
-            Product product = new Product("chips", 2.25, 234567, "~/css/chips.jpg");
+            Product product = new Product("chips", 2.25, 234567, "~/css/chips.png");
             
             order.Add(product);
 
@@ -74,7 +74,7 @@ namespace ConcessionStandProjectTests
         [Fact]
         public void WhenAddingAProduct_ThenSubtotalIsUpdated()
         {
-            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.jpg");
+            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.png");
             var order = new Order();
             order.Add(product);
 
@@ -86,8 +86,8 @@ namespace ConcessionStandProjectTests
         [Fact]
         public void WhenAddingMultipleProducts_ThenSubtotalIsUpdated()
         {
-            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.jpg");
-            var product2 = new Product("nachos", 3.75, 456789, "~/css/nachos.jpg");
+            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.png");
+            var product2 = new Product("nachos", 3.75, 456789, "~/css/nachos.png");
             var order = new Order();
             order.Add(product);
             order.Add(product2);

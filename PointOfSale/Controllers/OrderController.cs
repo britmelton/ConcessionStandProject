@@ -38,7 +38,7 @@ namespace PointOfSale.Controllers
         [Route("{orderId}")]
         public IActionResult Index(Guid orderId)
         {
-           var order = _orderRepository.Find(orderId);
+            var order = _orderRepository.Find(orderId);
             ViewBag.Products = _productRepository.GetAllProducts();
             return View(order);
         }
@@ -59,15 +59,14 @@ namespace PointOfSale.Controllers
             return View(order);
         }
 
-
-        //[HttpPost]
-        //[Route("orderhistory")]
-
-        //public IActionResult OrderHistory(OrderRepository orders)
-        //{
+        [Route("orderhistory")]
+        public IActionResult OrderHistory()
+        {
             
+            var orders = _orderRepository.GetAllOrders();
+            return View(orders);
 
-        //}
+        }
     }
 
 

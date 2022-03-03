@@ -20,21 +20,20 @@ namespace ConcessionStandProject
             return _orders[OrderId];
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+ 
+            return _orders.Values;
+        }
+
         public void Update(Order order)
         {
             _orders[order.OrderId] = order;
             //change previous order to (=) current order (order passed in)
         }
 
+    
 
-        //public void GetAllOrders(Dictionary<Guid, Order> orders)
-        //{
-        //    foreach (var order in orders)
-        //    {
-        //        _orders.Add(order.OrderId, order);
-
-        //    }
-        //}
     }
     
 }

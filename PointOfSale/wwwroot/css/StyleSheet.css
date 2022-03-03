@@ -1,121 +1,118 @@
 ﻿
-
-body {
-   
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    filter: blur(3px);   
 }
-
-    body.home-page {
-        background-image: url("images/concessionstand.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        backdrop-filter: blur(4px);
-        min-height: 90vh;
-    }
+#background2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 50%;
+    width: 100%;
+}
 
 .display-4 {
     font-size: 4em;
     font-weight:bold;
-    font-style: italic;
-    color: blue;
-    -webkit-text-stroke: 2px black;
+    color: hsl(240, 60%, 60%);
+    text-shadow: 2px 2px hsl(0, 0%, 0%);
 }
 
-    .total{
-        font-weight:bold;
-    }
+body.receipt-page {
+    background-color: hsl(45, 29%, 97%);
+}
 
-    body.order-page{
-        background-color:lightgoldenrodyellow;
-    }
+.select {
+    font-size: 2em;
+    color: hsl(240, 60%, 60%);
+    font-weight:bold;
+    text-shadow: 1px 1px hsl(0, 60%, 50%);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
-    .select{
-        font-size:2em;
-        color:darkblue;
-
-    }
-
-.receipt {
+.receiptpageheader {
     font-size: 4em;
     -webkit-text-stroke: 2px white;
 }
-.summary{
-    font-size:1em;
-    color:darkblue;
+
+.summary  {
+    font-size: 1em;
+    color: hsl(0, 0%, 0%);
+    text-align: left;
+    margin-right: 2em;
+}
+.order-summary-subtotal{
+    text-align:center;
+    font-weight:bold;
 }
 
-.submit{
-    background-color:blue;
-    color:lightblue;
+.submit {
+    background-color: hsl(0, 0%,50%);
+    color: hsl(48, 29%, 98%);
     font-size:1em;
+    align-content: center;
+    margin-top: 8px;
+    margin-bottom:8px;
+
 }
 
 #invoice-POS {
-    box-shadow: 0 0 2in -0.50in rgba(0, 0, 0, 0.5);
+    border: 2px solid #CCC;
+    box-shadow: 5px 10px #DDD;
     padding: 2mm;
-    margin: 0 auto;
-    width: 50mm;
+    margin: auto;
+    width: 25%;
     background: #FFF;
 }
-.orderid{
-    font-size:.5em;
+
+.receiptorderid {
+    font-size:.9em;
+    text-align: left;
+    font-weight: bold;
 }
 
- h1{
-    font-size: 1.5em;
-    color: #222;
-}
-
-h2 {
-    font-size: .9em;
-}
-
-h3 {
-    font-size: 1.2em;
-    font-weight: 300;
-    line-height: 2em;
-}
-
-p {
-    font-size: .7em;
-    color: #666;
-    line-height: 1.2em;
-}
-
-#top, #mid, #bot {
-    border-bottom: 1px solid #EEE;
+.receiptheader {
+    font-size: 1em;
+    text-align: center;
 }
 
 #top {
     min-height: 100px;
+    border-bottom: 1px solid #EEE;
 }
 
 #mid {
     min-height: 80px;
+    border-bottom: 1px solid #EEE;
 }
 
 #bot {
     min-height: 50px;
+    border-bottom: 1px solid #EEE;
 }
 
-#top .logo {
+.logo {
     height: 60px;
     width: 60px;
     background: url(images/concessionstand.jpg) no-repeat;
     background-size: 60px 60px;
+    margin-left: 35%;
 }
 
-
-.info {
+.receiptcontactinfo {
     display: block;
     margin-left: 0;
-}
-
-.title {
-    float: right;
-}
-
-.title p {
-        text-align: right;
+    font-size: .8em;
+    color: #666;
+    line-height: 1.2em;
+    text-align: center;
 }
 
 table {
@@ -123,24 +120,74 @@ table {
     border-collapse: collapse;
 }
 
-
-.tabletitle {
-    font-size: .5em;
+.receiptcontainer {
     background: #EEE;
 }
 
-.service {
+.itemlistcontainer {
     border-bottom: 1px solid #EEE;
 }
 
-.item {
+.itemheader {
     width: 24mm;
+    font-size: .8em;
+    font-weight: bold;
+}
+.priceheader {
+    font-size: .8em;
+    font-weight: bold;
 }
 
-.itemtext {
-    font-size: .5em;
+.itemlist {
+    font-size: .8em;
+}
+.receipttotal {
+    font-size: .8em;
+    font-weight: bold;
+    text-align: right;
+    padding-right: .8em;
 }
 
-#legalcopy {
+#message {
     margin-top: 5mm;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.imagebutton {
+    object-fit:contain;
+    width:100%;
+    height:100%;
+    max-width:8em;
+    max-height:8em;
+}
+
+.item-button {
+    background-color: hsl(45, 29%, 95%);
+    border: none;
+    outline: none;
+    padding: 1em;
+    box-shadow: #DDD 2px 2px;
+    margin: .2em;
+    height: 10em;
+    width: 10em;
+}
+
+#control-panel {
+    display: grid;
+    width: 60%;
+}
+
+#main {
+    margin-top: 110px;
+    display: flex;
+}
+#order-summary{
+    height:22em;
+    overflow:scroll;
+    width:40%;
+}
+.line-item{
+    display:flex;
+    justify-content: space-between;
 }

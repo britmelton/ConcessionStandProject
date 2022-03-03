@@ -13,6 +13,6 @@ namespace ConcessionStandProject
 
         public void Update(Order order);
 
-        //public void GetAllOrders(Dictionary<Guid, Order> orders);
+        IEnumerable<Order> GetAllOrders();
     }
 }
