@@ -25,14 +25,14 @@
            <div>
               <table id="receipt-table">
                  <tr class="receipt-container">
-                   <td class="item-header"><p>Item</p></td>
-                   <td class="price-header"> <p>Price</p></td>
+                   <td class="receipt-item-column"><p>Item</p></td>
+                   <td class="receipt-price-column"> <p>Price</p></td>
                  </tr>
                  @foreach (var product in @Model.Products)
                  {
-                   <tr class="item-list-container">
-                     <td><p class="item-list">@product.Name </p></td> 
-                     <td><p class="item-list">$@string.Format("{0:#.00}",product.Price)</p></td>               
+                   <tr class="receipt-item-list-container">
+                     <td><p class="receipt-item-list">@product.Name </p></td> 
+                     <td><p class="receipt-item-list">$@string.Format("{0:#.00}",product.Price)</p></td>               
                    </tr>
                  }
     
