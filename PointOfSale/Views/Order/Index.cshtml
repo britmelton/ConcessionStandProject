@@ -1,52 +1,48 @@
-﻿
-<body class=order-page>
-     <img id="background2" src="~/css/images/logo.jpg" />
-@using ConcessionStandProject
+﻿@using ConcessionStandProject
 @model Order;
 @{
     ViewData["Title"] = "Point Of Sale";
 }
+<body class="order-page">
+     <img id="order-page-background" src="~/css/images/logo.jpg" />
 
-<div class="text-center">
+    <div class="text-center">
+        <p class="order-page-text">Hello! Select the item(s) you would like to order.</p>
     
-    @*<h1 class="display-4">Concession Stand</h1>*@
-    <p class="select">Hello! Select the item(s) you would like to order.</p>
-
-    <div id="main">
-        <div id="control-panel">
-            @using (Html.BeginForm("AddItem", "Order", FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.OrderId)
-                @foreach(var product in ViewBag.Products)
+        <div id="order-page-main">
+            <div id="order-page-control-panel">
+                @using (Html.BeginForm("AddItem", "Order", FormMethod.Post))
                 {
-                    <button 
-                        type="submit"
-                        name="sku"
-                        value="@product.Sku" 
-                        class="item-button" 
-                        >
-                       <img src="@Url.Content(product.Image)" alt="@product.Name" class="imagebutton">
-                    </button>
+                    @Html.HiddenFor(x => x.OrderId)
+                    @foreach(var product in ViewBag.Products)
+                    {
+                        <button 
+                            type="submit"
+                            name="sku"
+                            value="@product.Sku" 
+                            class="order-page-item-button" 
+                            >
+                           <img src="@Url.Content(product.Image)" alt="@product.Name" class="order-page-button-image">
+                        </button>
+                    }
                 }
-            }
-            
-
-            @using (Html.BeginForm("generate-receipt", "Order", FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.OrderId)
-                <button
-                    type="submit"
-                    class="submit"
-                    >Submit Order
-                </button>
-            }
-
+                
+                @using (Html.BeginForm("generate-receipt", "Order", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.OrderId)
+                    <button
+                        type="submit"
+                        class="order-page-submit-button"
+                        >Submit Order
+                    </button>
+                }   
             </div><!-- end control panel -->
-            <div id="order-summary">       
+            <div id="order-summary-list-display">       
                 @await Html.PartialAsync("OrderSummary", Model)
-           
             </div>
+            <div id="order-summary-subtotal-container">
             <h3 class="order-summary-subtotal">Subtotal $@string.Format("{0:#.00}", Model.Subtotal)</h3>
-        </div><!-- end main grid -->
+            </div>
+        </div><!-- end main -->
     </div>
 </body>

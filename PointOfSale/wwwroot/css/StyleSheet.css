@@ -1,14 +1,15 @@
 ﻿
-#background {
+#home-page-background {
     position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
     height: 100%;
     width: 100%;
-    filter: blur(3px);   
+    filter: opacity(0.8) contrast(90%);   
 }
-#background2 {
+
+#order-page-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,33 +18,29 @@
     width: 100%;
 }
 
-.display-4 {
+.home-page-header {
     font-size: 4em;
-    font-weight:bold;
-    color: hsl(240, 60%, 60%);
-    text-shadow: 2px 2px hsl(0, 0%, 0%);
+    font-weight: bold;
+    color: hsl(225, 60%, 60%);
+    text-shadow: .063em .063em hsl(0, 0%, 0%);
+    background-color: hsl(0, 0%, 100%, 0.5);
 }
 
 body.receipt-page {
     background-color: hsl(45, 29%, 97%);
 }
 
-.select {
+.order-page-text {
     font-size: 2em;
     color: hsl(240, 60%, 60%);
-    font-weight:bold;
-    text-shadow: 1px 1px hsl(0, 60%, 50%);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: .05em .05em hsl(0, 0%, 0%);
+    margin-top: .625em;
+    margin-bottom: .625em;
 }
 
-.receiptpageheader {
-    font-size: 4em;
-    -webkit-text-stroke: 2px white;
-}
-
-.summary  {
-    font-size: 1em;
+.order-summary-list-text  {
+    font-size: .875em;
     color: hsl(0, 0%, 0%);
     text-align: left;
     margin-right: 2em;
@@ -53,108 +50,116 @@ body.receipt-page {
     font-weight:bold;
 }
 
-.submit {
+#order-summary-subtotal-container{
+    max-width: 10%;
+    margin-left: .9em;
+}
+.order-page-submit-button {
     background-color: hsl(0, 0%,50%);
     color: hsl(48, 29%, 98%);
-    font-size:1em;
+    font-size: 1em;
     align-content: center;
-    margin-top: 8px;
-    margin-bottom:8px;
-
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
-#invoice-POS {
-    border: 2px solid #CCC;
-    box-shadow: 5px 10px #DDD;
-    padding: 2mm;
+#receipt-POS {
+    border: .125em solid hsl(0, 0%, 80%);
+    box-shadow: .313em .625em hsl(0, 0%, 87%);
+    padding: .469em;
     margin: auto;
     width: 25%;
-    background: #FFF;
+    background: hsl(0, 0%, 100%);
 }
 
-.receiptorderid {
+.receipt-orderid {
     font-size:.9em;
     text-align: left;
     font-weight: bold;
 }
 
-.receiptheader {
+.receipt-header {
     font-size: 1em;
     text-align: center;
 }
 
-#top {
-    min-height: 100px;
-    border-bottom: 1px solid #EEE;
+#receipt-top {
+    min-height: 6.25em;
+    border-bottom: .063em solid hsl(0, 0%, 93%);
 }
 
-#mid {
-    min-height: 80px;
-    border-bottom: 1px solid #EEE;
+#receipt-mid {
+    min-height: 5em;
+    border-bottom: .063em solid hsl(0, 0%, 93%);
 }
 
-#bot {
-    min-height: 50px;
-    border-bottom: 1px solid #EEE;
+#receipt-bot {
+    min-height: 3.125em;
+    border-bottom: .063em solid hsl(0, 0%, 93%);
 }
 
-.logo {
-    height: 60px;
-    width: 60px;
-    background: url(images/concessionstand.jpg) no-repeat;
-    background-size: 60px 60px;
+#receipt-logo {
+    height: 3.75em;
+    width: 3.85em;
+    background:no-repeat;
+    background-size: 3.75em 3.85em;
     margin-left: 35%;
 }
 
-.receiptcontactinfo {
+.receipt-contact-info {
     display: block;
     margin-left: 0;
     font-size: .8em;
-    color: #666;
+    color: hsl(0, 0%, 40%);
     line-height: 1.2em;
     text-align: center;
 }
 
-table {
+#receipt-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.receiptcontainer {
-    background: #EEE;
+.order-history-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.itemlistcontainer {
-    border-bottom: 1px solid #EEE;
+.receipt-container {
+    background: hsl(0, 0%, 93%);
 }
 
-.itemheader {
-    width: 24mm;
+.item-list-container {
+    border-bottom: .063em solid hsl(0, 0%, 93%);
+}
+
+.item-header {
+    width: 5.625em;
     font-size: .8em;
     font-weight: bold;
 }
-.priceheader {
+.price-header {
     font-size: .8em;
     font-weight: bold;
 }
 
-.itemlist {
+.item-list {
     font-size: .8em;
 }
-.receipttotal {
+.receipt-total {
     font-size: .8em;
     font-weight: bold;
     text-align: right;
     padding-right: .8em;
 }
 
-#message {
-    margin-top: 5mm;
+#receipt-message {
+    margin-top: 1.125em;
     font-size: .8em;
     font-weight: bold;
 }
 
-.imagebutton {
+.order-page-button-image {
     object-fit:contain;
     width:100%;
     height:100%;
@@ -162,32 +167,32 @@ table {
     max-height:8em;
 }
 
-.item-button {
+.order-page-item-button {
     background-color: hsl(45, 29%, 95%);
     border: none;
     outline: none;
     padding: 1em;
-    box-shadow: #DDD 2px 2px;
+    box-shadow: hsl(0, 0%, 87%) 0.125em 0.125em;
     margin: .2em;
     height: 10em;
     width: 10em;
 }
 
-#control-panel {
+#order-page-control-panel {
     display: grid;
     width: 60%;
 }
 
-#main {
-    margin-top: 110px;
+#order-page-main {
+    margin-top: 6.875em;
     display: flex;
 }
-#order-summary{
+#order-summary-list-display {
     height:22em;
     overflow:scroll;
     width:40%;
 }
-.line-item{
+.order-summary-line-item{
     display:flex;
     justify-content: space-between;
 }

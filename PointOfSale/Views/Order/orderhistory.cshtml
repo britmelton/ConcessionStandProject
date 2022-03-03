@@ -1,28 +1,27 @@
-﻿<body class="order-history-page">
-@using ConcessionStandProject
+﻿@using ConcessionStandProject
 @model IEnumerable<Order>;
 @{
     ViewData["Title"] = "Point Of Sale";
 }
-
-<div class="text-center">
-    <h1>Order History</h1>
-</div>
-
-<table class="table">
- <tr>
-     <th>Order ID</th>
-     <th>Quantity</th>
-     <th>Total Cost</th>
- </tr>
-
- @foreach(var order in Model)
-    {
-         <tr>
-         <td><p>@order.OrderId</p></td>
-         <td><p>@order.Products.Count()</p></td>
-         <td><p>$@string.Format("{0:#.00}", order.Total)</p></td>  
-         </tr>   
-    }
-</table>
+<body class="order-history-page">
+    <div class="text-center">
+        <h1>Order History</h1>
+    </div>
+    
+    <table class="order-history-table">
+       <tr>
+          <th>Order ID</th>
+          <th>Quantity</th>
+          <th>Total Cost</th>
+       </tr>
+    
+       @foreach(var order in Model)
+       {
+          <tr>
+          <td><p>@order.OrderId</p></td>
+          <td><p>@order.Products.Count()</p></td>
+          <td><p>$@string.Format("{0:#.00}", order.Total)</p></td>  
+          </tr>   
+       }
+    </table>
 </body>
