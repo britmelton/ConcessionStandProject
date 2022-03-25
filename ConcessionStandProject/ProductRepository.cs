@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ConcessionStandProject
 {
@@ -14,6 +10,7 @@ namespace ConcessionStandProject
         }
 
         private static Dictionary<int, Product> _products = new Dictionary<int, Product>(); //field
+
         static ProductRepository()
         {
             _products.Add(123456, new Product("hotdog", 1.05, 123456, "~/css/images/hotdog.png"));
@@ -26,6 +23,7 @@ namespace ConcessionStandProject
         public Product Find(int sku)
         {
             return _products[sku];
+            
         }
     }
 }

@@ -8,10 +8,15 @@ namespace PointOfSale.Controllers
     [Route("{controller}")]
     public class OrderController : Controller
     {
-        private readonly IOrderRepository _orderRepository = new OrderRepository();
-        private readonly IProductRepository _productRepository = new ProductRepository();
+        private readonly IOrderRepository _orderRepository;
+        private readonly IProductRepository _productRepository;
         //gives access to the orders and products that are stored
 
+        public OrderController(IOrderRepository orderRepository, IProductRepository productRepository)
+        {
+            _orderRepository = orderRepository;
+            _productRepository = productRepository;
+        }
         [HttpPost]
         public IActionResult AddItem(Order orderFromForm, string sku)
         {

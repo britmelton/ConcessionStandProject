@@ -16,6 +16,7 @@ namespace ConcessionStandProject
         public double Subtotal { get; set; }
         public Receipt Receipt { get; private set; }
         public double Total { get; set; }
+        public bool IsCompleted { get; set; }
 
         public void Add(Product product)
         {
@@ -25,9 +26,8 @@ namespace ConcessionStandProject
 
         public void Submit()
         {
-            Receipt = new Receipt(Products, OrderId);
-            var total = Subtotal;
-            Total = total;
+            GenerateReceipt();
+            IsCompleted = true;
         }
 
         public void CalculateSubtotal()
@@ -41,6 +41,11 @@ namespace ConcessionStandProject
             Subtotal = subtotal;
         }
 
-
+        public void GenerateReceipt()
+        {
+            Receipt = new Receipt(Products, OrderId);
+            var total = Subtotal;
+            Total = total;
+        }
     }
 }
