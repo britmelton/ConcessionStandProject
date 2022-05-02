@@ -8,7 +8,16 @@ namespace ConcessionStandProjectTests
 {
     public class OrderTests
     {
+
         [Fact]
+        public void WhenCreatingAnOrderID_ThenOrderIDIsSet()
+        {
+            var order = new Order();
+
+            Assert.NotEqual(order.OrderId, Guid.Empty);
+        }
+
+        [Fact] //fact is for parameterless tests 
         public void WhenAddingProductToOrder_ThenProductExistsInOrder()
         {           
             var order = new Order();
@@ -17,15 +26,6 @@ namespace ConcessionStandProjectTests
             order.Add(product);
        
             Assert.Equal(order.Products[0], product);
-        }
-
-
-        [Fact]
-        public void WhenCreatingAnOrderID_ThenOrderIDIsSet()
-        {
-            var order = new Order();
-
-            Assert.NotEqual(order.OrderId, Guid.Empty);
         }
 
         [Fact]
@@ -40,7 +40,8 @@ namespace ConcessionStandProjectTests
             order.Receipt.Should().NotBeNull();
         }
 
-        [Theory]
+        [Theory] //Theory is for parameterized tests. These are for when you're testing a specific object that has requirements. 
+        //for example my products MUST contain a name, price, sku, and image otherwise they will not be made by the constructor. 
         [InlineData("hotdog", 1.05, 123456, "~/css/hotdog.png")]
         [InlineData("pretzel", 2.75, 567891, "~/css/pretzel.png")]
         [InlineData("nachos", 3.75, 456789, "~/css/nachos.png")]

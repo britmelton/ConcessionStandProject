@@ -17,6 +17,7 @@ namespace ConcessionStandProjectTests
             Assert.Equal(name, product.Name);
             Assert.Equal(price, product.Price);
             Assert.Equal(sku, product.Sku);
+            Assert.Equal(image, product.Image);
         }
 
 

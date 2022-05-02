@@ -6,21 +6,6 @@ using System.Linq;
 
 namespace ConcessionStandProject
 {
-    public class DbOrder
-    {
-        public string OrderId { get; set; }
-        public double Total { get; set; }
-        public bool IsCompleted { get; set; }   
-    }
-
-    public class DbOrderProduct
-    {
-        public string OrderId { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public int Sku { get; set; }
-    }
-
     public class LiveOrderRepository : IOrderRepository
     {
         private readonly IConnectionStringProvider connectionStringProvider;
@@ -53,24 +38,28 @@ WHERE o.OrderId = @OrderId;";
 
             using var conn = new MySqlConnection(connectionStringProvider.GetConnectionString());
 
-            var order = new Order();
-
-            conn.Query<DbOrder, DbOrderProduct, Order>(
+            var orders = conn.Query<DbOrder, DbOrderProduct, Order>(
                 query,
                 (o, op) =>
                 {
-                    order.OrderId = Guid.Parse(o.OrderId);
-                    order.Total = o.Total;
-                    order.IsCompleted = o.IsCompleted;
-
+                    var order = new Order(o.OrderId, o.Total, o.IsCompleted);
                     if (op != null)
                         order.Add(new Product(op.Name, op.Price, op.Sku, ""));
                     
-                    return null;
+                    return order;
                 },
                 new { orderid = OrderId },
                 splitOn: "Name"
             );
+
+            var products = orders.SelectMany(x => x.Products).ToList();
+            var order = orders.FirstOrDefault();
+            order.Products.Clear();
+            foreach (var product in products)
+            {
+                order.Add(product);
+            }
+
             if (order.IsCompleted)
             {
                 order.GenerateReceipt();
@@ -80,9 +69,53 @@ WHERE o.OrderId = @OrderId;";
 
         public IEnumerable<Order> GetAllOrders()
         {
-            using var conn = new MySqlConnection(connectionStringProvider.GetConnectionString());
-            return conn.Query<Order>("SELECT * FROM orderproduct;");
-        }
+                const string query = @"
+SELECT o.OrderId
+     , o.Total
+     , o.IsCompleted
+     , op.Name
+     , op.Price
+     , op.Sku
+  FROM `Order` AS o
+LEFT JOIN orderproduct AS op 
+ON op.OrderId = o.OrderId;";
+
+                using var conn = new MySqlConnection(connectionStringProvider.GetConnectionString());
+
+                var orders = new Dictionary<Guid, Order>();
+
+            conn.Query<DbOrder, DbOrderProduct, Order>(
+                query,
+                (o, op) =>
+                {
+                    Order order;
+                    Guid orderId = Guid.Parse(o.OrderId);
+                    if (orders.ContainsKey(orderId))
+                    {
+                        order = orders[orderId];
+                    }
+                    else
+                    {
+                        order = new Order();
+                        orders.Add(orderId, order);
+                        order.OrderId = Guid.Parse(o.OrderId);
+                        order.Total = o.Total;
+                        order.IsCompleted = o.IsCompleted;
+                    }
+
+                        if (op != null)
+                            order.Add(new Product(op.Name, op.Price, op.Sku, ""));
+
+                        return null;
+                    },
+                    splitOn: "Name"
+                );
+                return orders.Values;
+            }
+            //using var conn = new MySqlConnection(connectionStringProvider.GetConnectionString());
+            //return conn.Query("SELECT OrderId, Total, IsCompleted FROM `order`;")
+            //    .Select(x => new Order(x.OrderId, x.Total, x.IsCompleted));
+        
 
         public void Update(Order order)
         {

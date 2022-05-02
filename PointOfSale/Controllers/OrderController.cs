@@ -53,7 +53,15 @@ namespace PointOfSale.Controllers
         public IActionResult GenerateReceipt(Order orderFromForm)
         {
             var order = _orderRepository.Find(orderFromForm.OrderId);
-            order.Submit();
+            try
+            {
+                order.Submit();
+            }
+            catch (Exception e) when (e.GetType() == typeof(InvalidOperationException))
+            {
+                return Redirect($"{order.OrderId}");
+            }
+            
             _orderRepository.Update(order);
             return Redirect($"{order.OrderId}/Receipt");
         }    

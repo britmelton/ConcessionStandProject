@@ -2,7 +2,7 @@
 {
     public class Product
     {
-        public Product(string name, double price, int sku, string image)
+        public Product(string name, double price, int sku, string image) // There are parameters in my contructor = Theory Test 
         {
             Name = name;
             Price = price;  
