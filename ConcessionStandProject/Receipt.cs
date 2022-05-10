@@ -5,7 +5,7 @@ namespace ConcessionStandProject
 {
     public class Receipt
     {
-        public Receipt(List<Product> products, Guid orderId)
+        public Receipt(List<Product> products, Guid orderId)   //constructor 
         {
             Products = new List<Product>();
             foreach (Product product in products)
@@ -15,7 +15,7 @@ namespace ConcessionStandProject
             OrderId = orderId;
         }
 
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } //properties 
         public Guid OrderId { get; }
     }
 }

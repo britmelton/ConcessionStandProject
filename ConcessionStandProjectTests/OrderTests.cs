@@ -19,12 +19,12 @@ namespace ConcessionStandProjectTests
 
         [Fact] //fact is for parameterless tests 
         public void WhenAddingProductToOrder_ThenProductExistsInOrder()
-        {           
+        {
             var order = new Order();
             var product = new Product("cookie", 2.99, 678912, "~/css/cookie.png");
 
             order.Add(product);
-       
+
             Assert.Equal(order.Products[0], product);
         }
 
@@ -52,11 +52,11 @@ namespace ConcessionStandProjectTests
             Product product = new Product(name, price, sku, image);
 
             order.Add(product);
-            
+
             order.Submit();
 
             order.Receipt.Products.Should().BeEquivalentTo(order.Products);
-            
+
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace ConcessionStandProjectTests
         {
             Order order = new Order();
             Product product = new Product("chips", 2.25, 234567, "~/css/chips.png");
-            
+
             order.Add(product);
 
             order.Submit();
@@ -96,6 +96,38 @@ namespace ConcessionStandProjectTests
             var expectedSubtotal = product.Price + product2.Price;
 
             order.Subtotal.Should().Be(expectedSubtotal);
+        }
+
+        [Fact]
+        public void WhenRemovingProductFromOrder_ThenOrderDoesNotContainProduct()
+        {
+            var order = new Order();
+            var product = new Product("nachos", 3.75, 456789);
+            var product2 = new Product("cookie", 2.99, 678912);
+            var product3 = new Product("nachos", 3.75, 456789);
+            order.Add(product);
+            order.Add(product2);
+            order.Add(product3);
+            order.RemoveProduct(product.Sku);
+
+            order.Products.Should().NotContain(product);
+
+        }
+        [Fact]
+        public void WhenRemovingProductFromOrder_ThenPriceIsSubtractedFromSubtotal()
+        {
+            var order = new Order();
+            var product = new Product("nachos", 3.75, 456789);
+            var product2 = new Product("cookie", 2.99, 678912);
+            var product3 = new Product("nachos", 3.75, 456789);
+            order.Add(product);
+            order.Add(product2);
+            order.Add(product3);
+            order.RemoveProduct(product.Sku);
+            var expectedSubtotal = order.Subtotal = -product.Price;
+
+            order.Subtotal.Should().Be(expectedSubtotal);
+
         }
 
 

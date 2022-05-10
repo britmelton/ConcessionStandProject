@@ -31,8 +31,8 @@ namespace PointOfSale
             services.AddScoped<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddSingleton<IConfiguration>(Configuration);
             
-            services.AddScoped<IOrderRepository, LiveOrderRepository>();
-            services.AddScoped<IProductRepository, LiveProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

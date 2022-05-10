@@ -1,15 +1,28 @@
 ﻿@using ConcessionStandProject
 @model Order
 
-   <h6>Order:<br /> @Model.OrderId</h6>
+<h6>Order:<br /> @Model.OrderId</h6>
 
-   <ol class=" order-summary-list-text">
-       @foreach(var li in Model.Products)
-       {
-         <li>
-             <div class="order-summary-line-item">
-                 <span>@li.Name</span><span>&#36;@string.Format("{0:#.00}", li.Price)</span>
-             </div>
-         </li>
-       }
-   </ol>
+
+@using (Html.BeginForm("RemoveFromCart", "Order", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.OrderId)
+    <ol class=" order-summary-list-text">
+        @foreach (var li in Model.Products)
+        {
+            <li>
+                    <div class="order-summary-line-item">
+                    <span>@li.Name</span><span>&#36;@string.Format("{0:#.00}", li.Price)</span>
+
+                    <button type="submit"
+                    name="Sku"
+                    value="@li.Sku"
+                    class="order-page-remove-button">
+                        X
+                    </button>
+
+                </div>
+            </li>
+        }
+    </ol>
+}

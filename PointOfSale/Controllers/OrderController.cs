@@ -80,6 +80,21 @@ namespace PointOfSale.Controllers
             return View(orders);
 
         }
+
+
+        [HttpPost]
+        [Route("RemoveFromCart")]
+        public ActionResult RemoveFromCart(Order orderFromForm, int sku)
+        {
+            var order = _orderRepository.Find(orderFromForm.OrderId);
+
+            order.RemoveProduct(sku);
+
+            _orderRepository.Update(order);//updates order in storage
+
+            return Redirect($"{order.OrderId}");
+
+        }
     }
 
 

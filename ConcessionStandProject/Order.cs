@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConcessionStandProject
 {
@@ -63,6 +64,19 @@ namespace ConcessionStandProject
 
         }
 
-    
+        public void RemoveProduct(int sku)
+        {
+            double subtotal = Subtotal;
+            _ = Products.Where(p => p.Sku == sku);
+            foreach (Product p in Products)
+            {
+                Products.Remove(p);
+                Subtotal -= p.Price;
+                break;
+            }
+
+        }
+
+
     }
 }

@@ -46,7 +46,7 @@
 .order-page-item-button {
     background-color: hsl(45, 29%, 95%);
     border: none;
-    outline: none;
+    outline:thin;
     padding: 1em;
     box-shadow: hsl(0, 0%, 87%) 0.125em 0.125em;
     margin: .2em;
@@ -57,6 +57,17 @@
 #order-page-main {
     margin-top: 10em;
     display: flex;
+}
+
+.order-page-remove-button {
+    background-color: hsl(45, 29%, 95%);
+    border: none;
+    outline: none;
+    padding: 1em;
+    box-shadow: hsl(0, 0%, 87%) 0.125em 0.125em;
+    margin: .5em;
+    height: 1em;
+    width: 1em;
 }
 
 .order-page-submit-button {
