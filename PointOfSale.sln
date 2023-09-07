@@ -18,8 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure-Dapper", "In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure-Mock", "Infrastructure-Mock\Infrastructure-Mock.csproj", "{4B59F084-FCF0-4A9B-9263-58D2CE34283F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{17803E9B-800E-4324-9668-91676D24AF31}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{CE9B3909-8E89-4536-B66C-333A8F29FBB9} = {17803E9B-800E-4324-9668-91676D24AF31}
-		{4B59F084-FCF0-4A9B-9263-58D2CE34283F} = {17803E9B-800E-4324-9668-91676D24AF31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1503FE3D-9674-46B4-8B1F-F46AAE51414D}
