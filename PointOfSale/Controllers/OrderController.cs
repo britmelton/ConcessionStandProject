@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ConcessionStandProject;
 using Microsoft.AspNetCore.Mvc;
 
@@ -80,7 +79,6 @@ namespace PointOfSale.Controllers
             return View(orders);
 
         }
-
 
         [HttpPost]
         [Route("RemoveFromCart")]

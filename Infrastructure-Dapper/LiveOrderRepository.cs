@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Linq;
+using ConcessionStandProject;
 
-namespace ConcessionStandProject
+namespace Infrastructure.Dapper
 {
     public class LiveOrderRepository : IOrderRepository
     {

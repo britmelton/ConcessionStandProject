@@ -11,7 +11,7 @@
     
         <div id="order-page-main">
             <div id="order-page-control-panel">
-                @using (Html.BeginForm("AddItem", "Order", FormMethod.Post))
+                @using(Html.BeginForm("AddItem", "Order", FormMethod.Post))
                 {
                     @Html.HiddenFor(x => x.OrderId)
                     @foreach(var product in ViewBag.Products)

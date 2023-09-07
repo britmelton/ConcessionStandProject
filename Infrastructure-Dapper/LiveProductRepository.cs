@@ -1,9 +1,9 @@
-﻿using Dapper;
+﻿using ConcessionStandProject;
+using Dapper;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 
-namespace ConcessionStandProject
+namespace Infrastructure.Dapper
 {
     public class LiveProductRepository : IProductRepository
     {       

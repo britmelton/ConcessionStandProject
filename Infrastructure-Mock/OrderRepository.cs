@@ -28,9 +28,5 @@ namespace ConcessionStandProject
             _orders[order.OrderId] = order;
             //change previous order to (=) current order (order passed in)
         }
-
-    
-
     }
-    
 }

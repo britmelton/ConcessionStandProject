@@ -12,7 +12,7 @@ namespace ConcessionStandProject
             OrderId = Guid.NewGuid();    //creates new guid ID for each new order. 
         }
 
-        public Order(string orderId, double total, bool isCompleted)
+        public Order(string orderId, decimal total, bool isCompleted)
         {
             OrderId = Guid.Parse(orderId);
             Total = total;
@@ -22,9 +22,9 @@ namespace ConcessionStandProject
 
         public List<Product> Products { get; set; }
         public Guid OrderId { get; set; }
-        public double Subtotal { get; set; }
+        public decimal Subtotal { get; set; }
         public Receipt Receipt { get; private set; }
-        public double Total { get; set; }
+        public decimal Total { get; set; }
         public bool IsCompleted { get; set; }
 
         public void Add(Product product)
@@ -47,11 +47,7 @@ namespace ConcessionStandProject
 
         public void CalculateSubtotal()
         {
-            double subtotal = 0;
-            foreach (Product product in Products)
-            {
-                subtotal += product.Price;
-            }
+            var subtotal = Products.Sum(product => product.Price);
 
             Subtotal = subtotal;
         }
@@ -65,8 +61,7 @@ namespace ConcessionStandProject
         }
 
         public void RemoveProduct(int sku)
-        {
-            double subtotal = Subtotal;
+        { 
             _ = Products.Where(p => p.Sku == sku);
             foreach (Product p in Products)
             {
@@ -76,7 +71,6 @@ namespace ConcessionStandProject
             }
 
         }
-
 
     }
 }

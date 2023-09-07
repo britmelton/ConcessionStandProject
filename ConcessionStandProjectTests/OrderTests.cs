@@ -1,14 +1,12 @@
 using ConcessionStandProject;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace ConcessionStandProjectTests
 {
     public class OrderTests
     {
-
         [Fact]
         public void WhenCreatingAnOrderID_ThenOrderIDIsSet()
         {
@@ -21,7 +19,7 @@ namespace ConcessionStandProjectTests
         public void WhenAddingProductToOrder_ThenProductExistsInOrder()
         {
             var order = new Order();
-            var product = new Product("cookie", 2.99, 678912, "~/css/cookie.png");
+            var product = new Product("cookie", 2.99m, 678912, "~/css/cookie.png");
 
             order.Add(product);
 
@@ -32,7 +30,7 @@ namespace ConcessionStandProjectTests
         public void WhenOrderIsSubmitted_ThenReceiptIsCreated()
         {
             var order = new Order();
-            var product = new Product("nachos", 3.75, 456789, "~/css/nachos.png");
+            var product = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
             order.Add(product);
 
             order.Submit();
@@ -42,14 +40,16 @@ namespace ConcessionStandProjectTests
 
         [Theory] //Theory is for parameterized tests. These are for when you're testing a specific object that has requirements. 
         //for example my products MUST contain a name, price, sku, and image otherwise they will not be made by the constructor. 
-        [InlineData("hotdog", 1.05, 123456, "~/css/hotdog.png")]
-        [InlineData("pretzel", 2.75, 567891, "~/css/pretzel.png")]
-        [InlineData("nachos", 3.75, 456789, "~/css/nachos.png")]
-        [InlineData("coca-cola", 2.95, 345678, "~/css/cocacola.png")]
-        public void WhenorderIsSubmitted_ThenReceiptContainsAllProducts(string name, double price, int sku, string image)
+        [InlineData("hotdog", "1.05", 123456, "~/css/hotdog.png")]
+        [InlineData("pretzel", "2.75", 567891, "~/css/pretzel.png")]
+        [InlineData("nachos", "3.75", 456789, "~/css/nachos.png")]
+        [InlineData("coca-cola", "2.95", 345678, "~/css/cocacola.png")]
+        public void WhenorderIsSubmitted_ThenReceiptContainsAllProducts(string name, string @decimal, int sku, string image)
         {
-            Order order = new Order();
-            Product product = new Product(name, price, sku, image);
+            var price = Convert.ToDecimal(@decimal);
+
+            var order = new Order();
+            var product = new Product(name, price, sku, image);
 
             order.Add(product);
 
@@ -63,7 +63,7 @@ namespace ConcessionStandProjectTests
         public void WhenOrderIsSubmitted_ThenReceiptContainsOrderID()
         {
             Order order = new Order();
-            Product product = new Product("chips", 2.25, 234567, "~/css/chips.png");
+            Product product = new Product("chips", 2.25m, 234567, "~/css/chips.png");
 
             order.Add(product);
 
@@ -75,7 +75,7 @@ namespace ConcessionStandProjectTests
         [Fact]
         public void WhenAddingAProduct_ThenSubtotalIsUpdated()
         {
-            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.png");
+            var product = new Product("hotdog", 1.05m, 123456, "~/css/hotdog.png");
             var order = new Order();
             order.Add(product);
 
@@ -87,8 +87,8 @@ namespace ConcessionStandProjectTests
         [Fact]
         public void WhenAddingMultipleProducts_ThenSubtotalIsUpdated()
         {
-            var product = new Product("hotdog", 1.05, 123456, "~/css/hotdog.png");
-            var product2 = new Product("nachos", 3.75, 456789, "~/css/nachos.png");
+            var product = new Product("hotdog", 1.05m, 123456, "~/css/hotdog.png");
+            var product2 = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
             var order = new Order();
             order.Add(product);
             order.Add(product2);
@@ -102,24 +102,24 @@ namespace ConcessionStandProjectTests
         public void WhenRemovingProductFromOrder_ThenOrderDoesNotContainProduct()
         {
             var order = new Order();
-            var product = new Product("nachos", 3.75, 456789);
-            var product2 = new Product("cookie", 2.99, 678912);
-            var product3 = new Product("nachos", 3.75, 456789);
+            var product = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
+            var product2 = new Product("cookie", 2.99m, 678912, "~/css/images/cookie.png");
+            var product3 = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
             order.Add(product);
             order.Add(product2);
             order.Add(product3);
             order.RemoveProduct(product.Sku);
 
             order.Products.Should().NotContain(product);
-
         }
+
         [Fact]
         public void WhenRemovingProductFromOrder_ThenPriceIsSubtractedFromSubtotal()
         {
             var order = new Order();
-            var product = new Product("nachos", 3.75, 456789);
-            var product2 = new Product("cookie", 2.99, 678912);
-            var product3 = new Product("nachos", 3.75, 456789);
+            var product = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
+            var product2 = new Product("cookie", 2.99m, 678912, "~/css/images/cookie.png");
+            var product3 = new Product("nachos", 3.75m, 456789, "~/css/nachos.png");
             order.Add(product);
             order.Add(product2);
             order.Add(product3);
@@ -127,9 +127,6 @@ namespace ConcessionStandProjectTests
             var expectedSubtotal = order.Subtotal = -product.Price;
 
             order.Subtotal.Should().Be(expectedSubtotal);
-
         }
-
-
     }
 }
